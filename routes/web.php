@@ -1,23 +1,12 @@
 <?php
 
+use App\Http\Controllers\bookController;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    $book = new Book;
-    $books = Book::all();
-    return view('welcome',['books'=>$books]);
-});
+Route::get('/', [[bookController::class,'index']]);
 
+Route::view('insertpage', 'insert');
 
-Route::view('insert', 'insertation');
-
-Route::get('/binsert', function () {
-    $book = new Book;
-    $book->name=(String)request('bname');
-    $book->page=(int)request('pageNum');
-    $book->type=(String)request('btype');
-    $book->save();
-    return redirect('/');
-});
+Route::get('/binsert',[bookController::class,'insert']);
