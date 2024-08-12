@@ -3,22 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class bookController extends Controller
 {
-function index() {
-    $book = new Book;
-    $books = Book::all();
-    return view('welcome',['books'=>$books]);
-}
+    function index()
+    {
+        $books = DB::select('select * from books');
+        return view('welcome', ['books' => $books]);
+    }
 
-function insert(){
-    $book = new Book;
-    $book->name=(String)request('bname');
-    $book->page=(int)request('pageNum');
-    $book->type=(String)request('btype');
-    $book->save();
-    return redirect('/');
-}
+    function insert()
+    {
+        DB::insert('insert into books (name,page,type) values (?, ?, ?)', [(string) request('bname'), (int) request('pageNum'), (string) request('btype')]);
+        return redirect('/');
+    }
 }
