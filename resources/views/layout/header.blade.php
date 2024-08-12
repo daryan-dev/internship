@@ -31,5 +31,5 @@
         <li><a class="active" href="/">Home</a></li>
         <li> <a href="insertpage">insert</a></li>
         <li ><a  href="signin">Sign in</a></li>
-        <li style="float:right"><a class="" href="#about">About</a></li>
+        <li style="float:right"><a class="" href="signup">Sign up</a></li>
     </ul>
